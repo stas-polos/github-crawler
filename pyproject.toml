@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "github-crawler"
+version = "0.1.0"
+description = "Crawler for github.com"
+authors = ["Stas Polos <polos.stanislav@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.10.1"
+ruff = "^0.5.1"
+black = "^24.4.2"
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+minversion = "7.0"
+addopts = "-ra -q"
+tmp_path_retention_policy = "none"
+filterwarnings = [
+    "ignore::DeprecationWarning:twisted.web.http",
+    "ignore::DeprecationWarning:pkg_resources",
+]
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+
+[tool.mypy]
+mypy_path = "src"
+
+[tool.ruff]
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["F", "I", "D", "PL", "E", "W", "UP", "T20", "C4", "C90", "PTH", "RET", "SIM"]
+ignore = ["D104", "D107", "D205", "PLR2004", "SIM105"]
+
+[tool.ruff.lint.pylint]
+max-args = 12
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+docstring-code-format = true
+skip-magic-trailing-comma = false

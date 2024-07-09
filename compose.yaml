@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  github-crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+      args:
+        - PYTHON_IMAGE_VERSION=${PYTHON_IMAGE_VERSION}
+    volumes:
+      - ./scripts:/app/scripts
+      - ./tests:/app/tests
+      - ./src:/app/src
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./poetry.lock:/app/poetry.lock
+    tty: true
+    command: ["sleep", "infinity"]

@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+.cache
+.pytest_cache/
+
+# Scrapy stuff:
+.scrapy
+
+# Environments
+.env
+
+# mypy
+.mypy_cache/
+
+# PyCharm
+.idea/
