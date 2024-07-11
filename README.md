@@ -53,7 +53,8 @@ Expected result:
     "keyword2"
   ],
   "proxies": [
-    "91.225.201.57:9901"
+    "194.126.37.94:8080",
+    "13.78.125.167:8080"
   ],
   "type": "repositories"
 }
