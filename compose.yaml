@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: development
+      target: production
       args:
         - PYTHON_IMAGE_VERSION=${PYTHON_IMAGE_VERSION}
     volumes:
