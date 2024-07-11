@@ -93,7 +93,7 @@ def get_detail_information(response: Response, url: dict[str, Any]) -> None:
         name, stat = lang.xpath("./span/text()")
         stats[name.strip()] = float(stat.strip().replace("%", ""))
 
-    url["extra"] = {"owner": owner, "language_stats": stats}
+    url["extra"] = {"owner": owner, "language_stats": stats or None}
 
 
 def search(task: dict[str, Any]) -> list[dict[str, Any]]:
