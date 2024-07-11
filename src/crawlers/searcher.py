@@ -3,6 +3,7 @@
 import json
 import logging
 import random
+import threading
 from typing import Any
 
 import requests
@@ -96,6 +97,18 @@ def get_detail_information(response: Response, url: dict[str, Any]) -> None:
     url["extra"] = {"owner": owner, "language_stats": stats or None}
 
 
+def processing_detail_page(session: requests.Session, url: dict[str, Any]) -> None:
+    """Makes requests to detail page and parse it.
+
+    Args:
+        session (requests.Session): Requests session.
+        url (dict[str, Any]): Url to detail page.
+
+    """
+    detail_response = session.get(url=url["url"])
+    get_detail_information(detail_response, url)
+
+
 def search(task: dict[str, Any]) -> list[dict[str, Any]]:
     """Starts the search process in GitHub."""
     session = requests.Session()
@@ -113,9 +126,14 @@ def search(task: dict[str, Any]) -> list[dict[str, Any]]:
     urls = get_urls(search_response)
 
     if task["type"] == SearchType.REPOSITORIES:
+        threads = []
         for url in urls:
-            detail_response = session.get(url=url["url"])
-            get_detail_information(detail_response, url)
+            thread = threading.Thread(target=processing_detail_page, args=(session, url))
+            thread.start()
+            threads.append(thread)
+
+        for thread in threads:
+            thread.join()
 
     return urls
 
