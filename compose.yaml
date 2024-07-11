@@ -14,5 +14,6 @@ services:
       - ./src:/app/src
       - ./pyproject.toml:/app/pyproject.toml
       - ./poetry.lock:/app/poetry.lock
+      - .env:/app/.env
     tty: true
     command: ["sleep", "infinity"]

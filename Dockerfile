@@ -41,7 +41,7 @@ RUN apt-get update -yq \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-ENV PATH="$PATH:$POETRY_HOME/bin:$VIRTUALENV/bin"
+ENV PATH="$POETRY_HOME/bin:$VIRTUALENV/bin:$PATH"
 
 WORKDIR /app
 COPY pyproject.toml poetry.lock /app/
