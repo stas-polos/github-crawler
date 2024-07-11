@@ -1,19 +1,26 @@
 [tool.poetry]
 name = "github-crawler"
-version = "0.1.0"
+version = "0.2.0"
 description = "Crawler for github.com"
 authors = ["Stas Polos <polos.stanislav@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-
+furl = "^2.1.3"
+requests = "^2.32.3"
+lxml = "^5.2.2"
+typer = "^0.12.3"
+python-dotenv = "^1.0.1"
+pydantic = "^2.8.2"
+pydantic-settings = "^2.3.4"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.10.1"
 ruff = "^0.5.1"
 black = "^24.4.2"
 pytest = "^8.2.2"
+types-requests = "^2.32.0.20240622"
 
 [build-system]
 requires = ["poetry-core"]
@@ -30,6 +37,10 @@ filterwarnings = [
 ]
 
 [[tool.mypy.overrides]]
+module = [
+    "furl.*",
+    "lxml.*",
+]
 ignore_missing_imports = true
 
 [tool.mypy]
