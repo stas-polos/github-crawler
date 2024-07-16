@@ -1,5 +1,5 @@
 # mypy: disable-error-code="call-arg"
-"""Settings for `service-cpv-prediction-enricher` project."""
+"""Implementation of the global settings for project."""
 
 from functools import lru_cache
 
