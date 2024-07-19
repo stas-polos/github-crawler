@@ -13,10 +13,9 @@ from lxml.html import fromstring
 from requests import Response
 
 from enums import SearchType
-from utils.logger import configure_logger
 
 logger = logging.getLogger(__name__)
-configure_logger()
+
 
 app = typer.Typer(name="GitHub Crawler")
 
