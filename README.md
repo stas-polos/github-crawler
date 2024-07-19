@@ -39,11 +39,7 @@ docker compose build github-crawler
 For run crawler need run command:
 ```bash
 docker compose run --rm github-crawler python /app/src/cli.py searcher crawl \
-  --keywords keyword1 \
-  --keywords keyword2 \
-  --proxies 194.126.37.94:8080 \
-  --proxies 13.78.125.167:8080 \
-  --search-type repositories
+  --path /app/src/storage/input/task.json
 ```
 Expected result:
 ```bash
