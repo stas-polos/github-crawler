@@ -56,7 +56,7 @@ def get_request_url(keywords: list[str], type_: SearchType) -> str:
             "type": type_,
         }
     )
-    logger.info(f"Formatted url: {f_url.tostr()}")
+    logger.debug(f"Formatted url: {f_url.tostr()}")
     return f_url.tostr()
 
 
@@ -152,6 +152,6 @@ def run_search(
         "proxies": proxies,
         "type": search_type,
     }
-    logger.info(f"Input task: {json.dumps(task, indent=2, ensure_ascii=False)}")
+    logger.debug(f"Input task: {json.dumps(task, indent=2, ensure_ascii=False)}")
     result = search(task)
     logger.info(f"Search results: {json.dumps(result, indent=2, ensure_ascii=False)}")
