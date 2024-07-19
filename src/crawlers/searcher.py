@@ -4,6 +4,7 @@ import json
 import logging
 import random
 import threading
+from pathlib import Path
 from typing import Any
 
 import requests
@@ -141,17 +142,11 @@ def search(task: dict[str, Any]) -> list[dict[str, Any]]:
     name="crawl",
     help="This command launches the crawler for parsing GitHub searches.",
 )
-def run_search(
-    keywords: list[str] = typer.Option(..., help="A list of keywords to be used as search terms."),
-    proxies: list[str] = typer.Option(..., help="A list of proxies to be used as search terms."),
-    search_type: SearchType = typer.Option(..., help="The type of search to perform."),
-):
+def run_search(path: str = typer.Option(..., help="The path to the JSON file with input parameters")):
     """Launches the crawler for parsing GitHub searches."""
-    task = {
-        "keywords": keywords,
-        "proxies": proxies,
-        "type": search_type,
-    }
+    with Path(path).open(encoding="utf-8") as f:
+        task = json.load(f)
+
     logger.debug(f"Input task: {json.dumps(task, indent=2, ensure_ascii=False)}")
     result = search(task)
     logger.info(f"Search results: {json.dumps(result, indent=2, ensure_ascii=False)}")
